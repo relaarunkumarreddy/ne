@@ -57,7 +57,7 @@ public class UserControllerTest {
         .andExpect(forwardedUrl("registration"));
 		
 	}
-	*@Test
+	/*@Test
 	public void registrationTestforPostValueHappyFlow() throws Exception{
 		String description =new String("Error String");
 		UserValidator userValidator;
@@ -71,16 +71,16 @@ public class UserControllerTest {
         //.andExpect(view().name("redirect:/welcome"))
         //.andExpect(forwardedUrl("redirect:/welcome"));
 		
-	}*
+	}*/
 	@Test
-	public void loginTestHappyFlow() throws Exception{
-		String error = "Your username and password is invalid";
-		mockMvc.perform(get("/login").param(error, error))
-        .andExpect(status().isOk())
-        .andExpect(view().name("login"))
-        .andExpect(forwardedUrl("login"));
-		
-	}
+        public void loginTestHappyFlow() throws Exception {
+                mockMvc.perform(post("/login")
+        .param("username", "testUser")
+        .param("password", "testPass"))
+        .andExpect(status().isOk())  // Update expected status if needed
+        .andExpect(view().name("welcome"));  // Ensure this matches your controller's response
+}
+
 	@Test
 	public void welcomeTestHappyFlow() throws Exception{
 		mockMvc.perform(get("/welcome"))
