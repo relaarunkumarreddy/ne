@@ -30,7 +30,17 @@ public class UserControllerTest {
 	@InjectMocks
 	private UserController controller;
 	private MockMvc mockMvc;
-	
+	@Autowired
+        private SecurityService securityService;
+	@Mock
+        private SecurityService securityservice;  // Add this line
+        @Before
+        public void setup(){
+                MockitoAnnotations.initMocks(this);
+                     mockMvc = MockMvcBuilders.standaloneSetup(controller)
+                         .setViewResolvers(new StandaloneMvcTestViewResolver()).build();
+        }
+
 	@Before
 	public void setup(){
 		MockitoAnnotations.initMocks(this);
@@ -77,12 +87,15 @@ public class UserControllerTest {
 	}*/
 	@Test
         public void loginTestHappyFlow() throws Exception {
-                mockMvc.perform(post("/login")
+            // Mock securityService behavior
+                when(securityService.autologin(anyString(), anyString())).thenReturn(true);
+                     mockMvc.perform(post("/login")
         .param("username", "testUser")
         .param("password", "testPass"))
-        .andExpect(status().isOk())  // Update expected status if needed
-        .andExpect(view().name("welcome"));  // Ensure this matches your controller's response
+        .andExpect(status().isOk())  // Update if necessary
+        .andExpect(view().name("welcome"));  // Ensure this matches controller response
         }
+
 
 	@Test
 	public void welcomeTestHappyFlow() throws Exception{
