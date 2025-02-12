@@ -82,7 +82,7 @@ public class UserControllerTest {
         .param("password", "testPass"))
         .andExpect(status().isOk())  // Update expected status if needed
         .andExpect(view().name("welcome"));  // Ensure this matches your controller's response
-}
+        }
 
 	@Test
 	public void welcomeTestHappyFlow() throws Exception{
