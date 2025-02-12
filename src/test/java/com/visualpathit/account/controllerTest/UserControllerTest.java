@@ -57,7 +57,7 @@ public class UserControllerTest {
         .andExpect(forwardedUrl("registration"));
 		
 	}
-	/*@Test
+	*@Test
 	public void registrationTestforPostValueHappyFlow() throws Exception{
 		String description =new String("Error String");
 		UserValidator userValidator;
@@ -71,7 +71,7 @@ public class UserControllerTest {
         //.andExpect(view().name("redirect:/welcome"))
         //.andExpect(forwardedUrl("redirect:/welcome"));
 		
-	}*/
+	}*
 	@Test
 	public void loginTestHappyFlow() throws Exception{
 		String error = "Your username and password is invalid";
